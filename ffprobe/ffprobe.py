@@ -25,7 +25,7 @@ class FFProbe:
                 subprocess.check_call(["ffprobe","-h"],stdout=tempf,stderr=tempf)
         except:
             raise IOError('ffprobe not found.')            
-        if os.path.isfile(self.video_file) or hasattr(self.video_file, 'read'):
+        if hasattr(self.video_file, 'read') or os.path.isfile(self.video_file):
             if hasattr(self.video_file, 'read'):
                 p = subprocess.Popen(["ffprobe","-show_streams","-"],stdin=self.video_file,stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
             else:
